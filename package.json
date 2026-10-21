@@ -1,0 +1,14 @@
+{
+  "name": "alpha-gsl-website",
+  "private": true,
+  "description": "ALPHA Global Shipping & Logistics website",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/app.css --minify",
+    "watch:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "0.5.9",
+    "@tailwindcss/typography": "0.5.15",
+    "tailwindcss": "3.4.17"
+  }
+}
