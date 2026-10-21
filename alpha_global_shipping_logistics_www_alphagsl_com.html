@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Global Shipping & Logistics | www.alphagsl.com</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B192C',
+                            900: '#1E3E62',
+                        },
+                        brandBlue: {
+                            500: '#0066FF',
+                            600: '#0052CC',
+                            700: '#003D99',
+                        },
+                        brandOrange: '#FF6500'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .active-nav { color: #0066FF; font-weight: 600; border-bottom: 2px solid #0066FF; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .admin-sidebar-item.active { background-color: #0066FF; color: white; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- TOP HEADER / INFO BAR -->
+    <div id="top-bar" class="bg-navy-800 text-gray-300 text-xs py-2 px-4 sm:px-8 flex justify-between items-center border-b border-gray-700">
+        <div class="flex items-center space-x-6">
+            <span class="flex items-center"><i class="fa-solid font-bold fa-phone text-brandBlue-500 mr-2"></i> <span id="top-phone">+1 (800) 555-ALPHA</span></span>
+            <span class="hidden md:flex items-center"><i class="fa-solid fa-envelope text-brandBlue-500 mr-2"></i> <span id="top-email">info@alphagsl.com</span></span>
+            <span class="hidden lg:flex items-center"><i class="fa-solid fa-globe text-brandBlue-500 mr-2"></i> <span id="top-domain">www.alphagsl.com</span></span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="bg-green-600 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold">ISO 9001:2015 Certified</span>
+            <button onclick="switchView('admin')" class="bg-brandOrange hover:bg-orange-600 text-white px-3 py-1 rounded text-xs font-semibold transition"><i class="fa-solid fa-user-gear mr-1"></i> Admin Portal</button>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="switchView('home')">
+                    <div class="bg-navy-900 text-white p-3 rounded-lg mr-3 flex items-center justify-center">
+                        <i class="fa-solid fa-ship text-2xl text-brandBlue-500"></i>
+                    </div>
+                    <div>
+                        <span id="brand-name-logo" class="text-2xl font-extrabold text-navy-800 tracking-tight">ALPHA <span class="text-brandBlue-500">GSL</span></span>
+                        <p id="brand-tagline" class="text-[10px] text-gray-500 tracking-wider font-semibold uppercase">Global Shipping & Logistics</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-700">
+                    <button onclick="switchView('home')" id="nav-home" class="nav-btn py-6 hover:text-brandBlue-500 transition active-nav">Home</button>
+                    <button onclick="switchView('about')" id="nav-about" class="nav-btn py-6 hover:text-brandBlue-500 transition">About Us</button>
+                    <button onclick="switchView('services')" id="nav-services" class="nav-btn py-6 hover:text-brandBlue-500 transition">Services</button>
+                    <button onclick="switchView('tracking')" id="nav-tracking" class="nav-btn py-6 hover:text-brandBlue-500 transition">Tracking & Tools</button>
+                    <button onclick="switchView('contact')" id="nav-contact" class="nav-btn py-6 hover:text-brandBlue-500 transition">Contact Us</button>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden lg:flex items-center">
+                    <button onclick="switchView('tracking'); scrollToQuote();" class="bg-brandBlue-500 hover:bg-brandBlue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold shadow-md transition">
+                        Get Instant Quote
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-gray-700 hover:text-brandBlue-500 focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchView('home'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-700 font-medium">Home</button>
+            <button onclick="switchView('about'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-700 font-medium">About Us</button>
+            <button onclick="switchView('services'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-700 font-medium">Services</button>
+            <button onclick="switchView('tracking'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-700 font-medium">Tracking & Tools</button>
+            <button onclick="switchView('contact'); toggleMobileMenu()" class="block w-full text-left py-2 text-gray-700 font-medium">Contact Us</button>
+        </div>
+    </header>
+
+    <!-- CONTENT VIEWS SECTION -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="view-home" class="page-view">
+            <!-- Hero Section -->
+            <section class="relative bg-navy-800 text-white py-24 px-4 sm:px-8 overflow-hidden">
+                <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80');"></div>
+                <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="bg-brandBlue-500/20 text-brandBlue-500 border border-brandBlue-500/30 text-xs px-3 py-1 rounded-full uppercase tracking-widest font-semibold">Reliable Global Freight Solutions</span>
+                        <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+                            Smart Logistics & World-Class Ocean & Air Freight
+                        </h1>
+                        <p id="hero-subtitle" class="text-gray-300 text-lg sm:text-xl">
+                            Alpha Global Shipping & Logistics (www.alphagsl.com) provides seamless worldwide supply chain solutions, customs clearance, and real-time cargo tracking.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="switchView('services')" class="bg-brandBlue-500 hover:bg-brandBlue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition">Explore Services</button>
+                            <button onclick="switchView('contact')" class="bg-transparent border-2 border-white hover:bg-white hover:text-navy-800 text-white px-6 py-3 rounded-lg font-semibold transition">Contact Our Team</button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Track Widget Box -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card text-gray-800 rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-100">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i class="fa-solid fa-location-dot text-2xl text-brandBlue-500"></i>
+                                <div>
+                                    <h3 class="text-xl font-bold text-navy-800">Track Your Shipment</h3>
+                                    <p class="text-xs text-gray-500">Enter container or B/L number</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <input type="text" id="quick-track-input" placeholder="e.g. AGSL-982341" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandBlue-500 focus:outline-none uppercase font-mono">
+                                </div>
+                                <button onclick="quickTrackSubmit()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3 rounded-lg transition flex items-center justify-center space-x-2">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <span>Track Shipment</span>
+                                </button>
+                                <div class="text-xs text-center text-gray-500 pt-2">
+                                    Demo Tracking Code: <span class="font-mono font-bold text-brandBlue-500 cursor-pointer" onclick="document.getElementById('quick-track-input').value='AGSL-982341'">AGSL-982341</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Bar -->
+            <section class="bg-white py-12 border-b">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-50 p-4 rounded-xl text-brandBlue-500 text-2xl"><i class="fa-solid fa-globe"></i></div>
+                        <div>
+                            <h4 class="font-bold text-navy-800">180+ Countries</h4>
+                            <p class="text-xs text-gray-500">Global Coverage Network</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-50 p-4 rounded-xl text-brandBlue-500 text-2xl"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <h4 class="font-bold text-navy-800">100% Secure Cargo</h4>
+                            <p class="text-xs text-gray-500">Insured & Safely Delivered</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-50 p-4 rounded-xl text-brandBlue-500 text-2xl"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <h4 class="font-bold text-navy-800">On-Time Delivery</h4>
+                            <p class="text-xs text-gray-500">Optimized Transit Routes</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-50 p-4 rounded-xl text-brandBlue-500 text-2xl"><i class="fa-solid fa-headset"></i></div>
+                        <div>
+                            <h4 class="font-bold text-navy-800">24/7 Support</h4>
+                            <p class="text-xs text-gray-500">Dedicated Account Support</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Services Overview -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-extrabold text-navy-800">Our Comprehensive Freight Solutions</h2>
+                        <div class="w-16 h-1 bg-brandBlue-500 mx-auto my-4 rounded"></div>
+                        <p class="text-gray-600">Tailored sea, air, and land transportation services engineered to keep your business supply chain running smoothly.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Service 1 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-navy-800 mb-2"><i class="fa-solid fa-ship text-brandBlue-500 mr-2"></i>Ocean Freight</h3>
+                                <p class="text-gray-600 text-sm mb-4">FCL and LCL containerized solutions with competitive freight rates and worldwide sea shipping lanes.</p>
+                                <button onclick="switchView('services')" class="text-brandBlue-500 font-semibold text-sm hover:underline">Read More &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519074069444-1ba4eaa1674a?auto=format&fit=crop&w=600&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-navy-800 mb-2"><i class="fa-solid fa-plane text-brandBlue-500 mr-2"></i>Air Cargo Express</h3>
+                                <p class="text-gray-600 text-sm mb-4">Fast time-critical air freight for high-value priority cargo with door-to-door global express delivery.</p>
+                                <button onclick="switchView('services')" class="text-brandBlue-500 font-semibold text-sm hover:underline">Read More &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-navy-800 mb-2"><i class="fa-solid fa-truck-fast text-brandBlue-500 mr-2"></i>Land Transport & Clearance</h3>
+                                <p class="text-gray-600 text-sm mb-4">Full truckload (FTL) & customs brokerage to simplify port clearance and inland road haulage.</p>
+                                <button onclick="switchView('services')" class="text-brandBlue-500 font-semibold text-sm hover:underline">Read More &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: ABOUT US ================= -->
+        <div id="view-about" class="page-view hidden">
+            <!-- Header Banner -->
+            <section class="bg-navy-800 text-white py-16 px-4">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h1 class="text-4xl font-extrabold mb-4">About Alpha Global Shipping & Logistics</h1>
+                    <p class="text-gray-300 max-w-2xl mx-auto">Your trusted worldwide partner for end-to-end supply chain excellence, sea freight, air freight, and customs logistics.</p>
+                </div>
+            </section>
+
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-brandBlue-500 font-semibold uppercase text-xs tracking-wider">Company Profile</span>
+                        <h2 id="about-title-text" class="text-3xl font-extrabold text-navy-800 mt-2 mb-6">Delivering Maritime & Freight Reliability Since 2010</h2>
+                        <div id="about-body-text" class="text-gray-600 space-y-4 text-sm leading-relaxed">
+                            <p>Alpha Global Shipping & Logistics (www.alphagsl.com) has grown from a regional logistics operator into an international ocean and air freight forwarder operating across key international trade lanes.</p>
+                            <p>We combine advanced technology, direct vessel operator contracts, and hands-on port clearance expertise to deliver cost-effective and timely cargo transportation worldwide.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Logistics Warehouse" class="rounded-2xl shadow-xl w-full object-cover h-96">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission & Vision -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow border-t-4 border-brandBlue-500">
+                        <div class="text-brandBlue-500 text-3xl mb-4"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3">Our Mission</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">To provide seamless, transparent, and efficient freight transportation and logistics solutions that empower global trade and give businesses peace of mind.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow border-t-4 border-navy-800">
+                        <div class="text-navy-800 text-3xl mb-4"><i class="fa-solid fa-eye"></i></div>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3">Our Vision</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">To be recognized as the world's most dependable, technology-driven logistics provider, connecting continents through modern logistics infrastructure.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 3: SERVICES ================= -->
+        <div id="view-services" class="page-view hidden">
+            <section class="bg-navy-800 text-white py-16 px-4">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h1 class="text-4xl font-extrabold mb-4">Our Services & Solutions</h1>
+                    <p class="text-gray-300 max-w-2xl mx-auto">Complete end-to-end global logistics tailored to manufacturers, exporters, and importers.</p>
+                </div>
+            </section>
+
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 space-y-12">
+                    <!-- Service 1 Detail -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-4">
+                            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" class="rounded-xl w-full h-56 object-cover">
+                        </div>
+                        <div class="md:col-span-8 space-y-3">
+                            <span class="bg-blue-100 text-brandBlue-500 text-xs font-bold px-3 py-1 rounded-full">Primary Core Service</span>
+                            <h3 class="text-2xl font-bold text-navy-800">Ocean Freight Forwarding (FCL / LCL)</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">We partner with top global container vessel carriers to offer competitive freight charges, scheduled sailings, and reliable space allocations during peak sea freight seasons.</p>
+                            <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                                <li>Full Container Load (FCL) & Less than Container Load (LCL)</li>
+                                <li>Reefer & Cold Chain Shipping</li>
+                                <li>Breakbulk & Project Heavy-Lift Cargo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 Detail -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-4">
+                            <img src="https://images.unsplash.com/photo-1519074069444-1ba4eaa1674a?auto=format&fit=crop&w=600&q=80" class="rounded-xl w-full h-56 object-cover">
+                        </div>
+                        <div class="md:col-span-8 space-y-3">
+                            <span class="bg-blue-100 text-brandBlue-500 text-xs font-bold px-3 py-1 rounded-full">Fast Priority Freight</span>
+                            <h3 class="text-2xl font-bold text-navy-800">Air Cargo Express & Chartering</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">When time is critical, Alpha Global Shipping & Logistics provides rapid air transport solutions via commercial air freighters and chartered flights.</p>
+                            <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                                <li>Airport-to-Airport & Door-to-Door Courier</li>
+                                <li>Hazardous Goods & Temperature-Controlled Express</li>
+                                <li>Complete Export/Import Air Documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 Detail -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-4">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" class="rounded-xl w-full h-56 object-cover">
+                        </div>
+                        <div class="md:col-span-8 space-y-3">
+                            <span class="bg-blue-100 text-brandBlue-500 text-xs font-bold px-3 py-1 rounded-full">Customs & Storage</span>
+                            <h3 class="text-2xl font-bold text-navy-800">Warehousing, Distribution & Customs Clearance</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Complete bonded warehouse facilities, inventory management, customs duty clearance, and last-mile trucking delivery to final destination warehouses.</p>
+                            <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                                <li>Customs Duty Tax Filing & Tariff Advice</li>
+                                <li>Secure Short & Long-term Bonded Storage</li>
+                                <li>Cross-docking & Pick-and-Pack Distribution</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 4: TRACKING & TOOLS ================= -->
+        <div id="view-tracking" class="page-view hidden">
+            <section class="bg-navy-800 text-white py-16 px-4">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h1 class="text-4xl font-extrabold mb-4">Shipment Tracking & Rate Calculator</h1>
+                    <p class="text-gray-300 max-w-2xl mx-auto">Track your cargo status live or calculate instant freight rate estimates for your ocean or air shipments.</p>
+                </div>
+            </section>
+
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Tracker Section -->
+                    <div class="lg:col-span-6 bg-white p-8 rounded-2xl shadow-md">
+                        <h2 class="text-2xl font-bold text-navy-800 mb-6 flex items-center"><i class="fa-solid fa-radar text-brandBlue-500 mr-3"></i> Real-Time Shipment Tracker</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Enter Container / Waybill / Reference Number</label>
+                                <input type="text" id="full-track-input" placeholder="e.g. AGSL-982341 or AGSL-104922" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandBlue-500 focus:outline-none font-mono uppercase">
+                            </div>
+                            <button onclick="fullTrackSubmit()" class="w-full bg-brandBlue-500 hover:bg-brandBlue-600 text-white font-semibold py-3 rounded-lg transition">Track Cargo Now</button>
+                        </div>
+
+                        <!-- Track Output Card -->
+                        <div id="track-result-card" class="hidden mt-8 border border-gray-200 rounded-xl p-6 bg-blue-50/50">
+                            <div class="flex justify-between items-center border-b pb-4 mb-4">
+                                <div>
+                                    <span class="text-xs text-gray-500">Tracking Code</span>
+                                    <h4 id="res-code" class="text-lg font-bold font-mono text-navy-800">AGSL-982341</h4>
+                                </div>
+                                <span id="res-status-badge" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold">In Transit</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 text-xs mb-6">
+                                <div><span class="text-gray-500">Origin Port:</span> <p id="res-origin" class="font-semibold text-gray-800">Shanghai, CN</p></div>
+                                <div><span class="text-gray-500">Destination Port:</span> <p id="res-dest" class="font-semibold text-gray-800">Rotterdam, NL</p></div>
+                                <div><span class="text-gray-500">Est. Arrival:</span> <p id="res-eta" class="font-semibold text-gray-800">2026-11-04</p></div>
+                                <div><span class="text-gray-500">Mode:</span> <p id="res-mode" class="font-semibold text-gray-800">Ocean Freight (FCL)</p></div>
+                            </div>
+
+                            <div id="res-timeline" class="space-y-3 pl-4 border-l-2 border-brandBlue-500 text-xs">
+                                <!-- Dynamic timeline -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Freight Calculator Section -->
+                    <div id="quote-calculator" class="lg:col-span-6 bg-white p-8 rounded-2xl shadow-md">
+                        <h2 class="text-2xl font-bold text-navy-800 mb-6 flex items-center"><i class="fa-solid fa-calculator text-brandBlue-500 mr-3"></i> Quick Freight Rate Estimator</h2>
+                        
+                        <form id="rate-quote-form" onsubmit="calculateQuote(event)" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Origin Country/Port</label>
+                                    <input type="text" id="quote-origin" required placeholder="e.g. Ningbo, China" class="w-full p-2.5 border rounded-lg text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Destination Country/Port</label>
+                                    <input type="text" id="quote-dest" required placeholder="e.g. Hamburg, Germany" class="w-full p-2.5 border rounded-lg text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Transport Mode</label>
+                                    <select id="quote-mode" class="w-full p-2.5 border rounded-lg text-sm">
+                                        <option value="ocean">Ocean Freight (Container)</option>
+                                        <option value="air">Air Express Freight</option>
+                                        <option value="land">Land Trucking</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Cargo Weight (KG)</label>
+                                    <input type="number" id="quote-weight" required min="1" placeholder="e.g. 500" class="w-full p-2.5 border rounded-lg text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Your Email Address</label>
+                                <input type="email" id="quote-email" required placeholder="name@company.com" class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+
+                            <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3 rounded-lg transition">Calculate Rate Estimate</button>
+                        </form>
+
+                        <div id="quote-result-box" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl text-center">
+                            <span class="text-xs text-gray-500 uppercase font-bold">Estimated Cost</span>
+                            <div id="quote-price" class="text-3xl font-extrabold text-green-700 my-1">$1,250.00 USD</div>
+                            <p class="text-xs text-gray-600">Estimate saved to Admin Portal! Our sales executive will contact you shortly.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 5: CONTACT US ================= -->
+        <div id="view-contact" class="page-view hidden">
+            <section class="bg-navy-800 text-white py-16 px-4">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h1 class="text-4xl font-extrabold mb-4">Contact Our Global Headquarters</h1>
+                    <p class="text-gray-300 max-w-2xl mx-auto">Get in touch with our team for bookings, customs clearance inquiries, or global partnership opportunities.</p>
+                </div>
+            </section>
+
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-navy-800 mb-4">Alpha Global Shipping & Logistics</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Visit our central office or reach out directly through phone or email.</p>
+                        </div>
+
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-50 text-brandBlue-500 p-3 rounded-lg"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800">Headquarters Address</h4>
+                                    <p id="contact-address-text" class="text-gray-600">Suite 1400, Global Maritime Trade Center, Harbor Drive, Port Plaza</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-50 text-brandBlue-500 p-3 rounded-lg"><i class="fa-solid fa-phone"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800">Phone Support</h4>
+                                    <p id="contact-phone-text" class="text-gray-600">+1 (800) 555-ALPHA / +1 (800) 555-2574</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-blue-50 text-brandBlue-500 p-3 rounded-lg"><i class="fa-solid fa-envelope"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800">Email Address</h4>
+                                    <p id="contact-email-text" class="text-gray-600">info@alphagsl.com / support@alphagsl.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map Preview Box -->
+                        <div class="bg-gray-100 rounded-xl p-4 border text-center">
+                            <i class="fa-solid fa-map-location-dot text-4xl text-gray-400 mb-2"></i>
+                            <p class="text-xs text-gray-500">Interactive Map Template Active (www.alphagsl.com)</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-7 bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                        <h3 class="text-2xl font-bold text-navy-800 mb-6">Send Us a Direct Message</h3>
+                        
+                        <form id="site-contact-form" onsubmit="submitContactForm(event)" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Full Name</label>
+                                    <input type="text" id="contact-name" required placeholder="John Doe" class="w-full p-3 border rounded-lg text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Email Address</label>
+                                    <input type="email" id="contact-email-input" required placeholder="john@example.com" class="w-full p-3 border rounded-lg text-sm bg-white">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Subject</label>
+                                <input type="text" id="contact-subject" required placeholder="Container Rate Inquiry" class="w-full p-3 border rounded-lg text-sm bg-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Message Detail</label>
+                                <textarea id="contact-message" rows="5" required placeholder="Please provide details about your shipping query..." class="w-full p-3 border rounded-lg text-sm bg-white"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brandBlue-500 hover:bg-brandBlue-600 text-white font-semibold py-3 rounded-lg transition">Submit Inquiry</button>
+                        </form>
+
+                        <div id="contact-success-msg" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg text-center text-sm font-semibold">
+                            Thank you! Your message has been sent successfully and logged into the website admin system.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 6: WEBSITE ADMIN PORTAL / CMS ================= -->
+        <div id="view-admin" class="page-view hidden bg-gray-100 min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                
+                <!-- Admin Header -->
+                <div class="bg-navy-800 text-white rounded-2xl p-6 mb-8 flex justify-between items-center shadow-lg">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-brandOrange text-white p-3 rounded-xl"><i class="fa-solid fa-sliders text-2xl"></i></div>
+                        <div>
+                            <h1 class="text-2xl font-bold">www.alphagsl.com Controller Portal</h1>
+                            <p class="text-xs text-gray-300">Live Website Content Management & Logistics Control Panel</p>
+                        </div>
+                    </div>
+                    <button onclick="switchView('home')" class="bg-white/10 hover:bg-white/20 text-white text-xs px-4 py-2 rounded-lg font-semibold transition">Back to Main Website</button>
+                </div>
+
+                <!-- Admin Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Admin Sidebar -->
+                    <div class="lg:col-span-3 bg-white rounded-2xl shadow p-4 space-y-2">
+                        <button onclick="switchAdminTab('dashboard')" id="tab-dashboard" class="admin-sidebar-item active w-full text-left px-4 py-3 rounded-lg text-sm font-semibold flex items-center space-x-3">
+                            <i class="fa-solid fa-chart-line"></i><span>Dashboard</span>
+                        </button>
+                        <button onclick="switchAdminTab('cms')" id="tab-cms" class="admin-sidebar-item w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 flex items-center space-x-3">
+                            <i class="fa-solid fa-pen-to-square"></i><span>CMS Text Editor</span>
+                        </button>
+                        <button onclick="switchAdminTab('trackers')" id="tab-trackers" class="admin-sidebar-item w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 flex items-center space-x-3">
+                            <i class="fa-solid fa-boxes-stacked"></i><span>Shipment Tracker Mgr</span>
+                        </button>
+                        <button onclick="switchAdminTab('messages')" id="tab-messages" class="admin-sidebar-item w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 flex items-center space-x-3">
+                            <i class="fa-solid fa-inbox"></i><span>Queries & Quotes</span>
+                        </button>
+                        <button onclick="switchAdminTab('settings')" id="tab-settings" class="admin-sidebar-item w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 flex items-center space-x-3">
+                            <i class="fa-solid fa-gear"></i><span>Domain Settings</span>
+                        </button>
+                    </div>
+
+                    <!-- Admin Content Main Panel -->
+                    <div class="lg:col-span-9 space-y-6">
+
+                        <!-- TAB 1: DASHBOARD OVERVIEW -->
+                        <div id="admin-panel-dashboard" class="admin-panel">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-white p-6 rounded-2xl shadow border-l-4 border-brandBlue-500">
+                                    <span class="text-xs text-gray-500 font-bold uppercase">Total Site Visits</span>
+                                    <h3 class="text-3xl font-extrabold text-navy-800 my-1">14,290</h3>
+                                    <span class="text-xs text-green-600"><i class="fa-solid fa-arrow-up"></i> +12.4% this week</span>
+                                </div>
+                                <div class="bg-white p-6 rounded-2xl shadow border-l-4 border-green-500">
+                                    <span class="text-xs text-gray-500 font-bold uppercase">Active Cargo Shipments</span>
+                                    <h3 id="stat-active-shipments" class="text-3xl font-extrabold text-navy-800 my-1">2</h3>
+                                    <span class="text-xs text-gray-500">Live in Tracking System</span>
+                                </div>
+                                <div class="bg-white p-6 rounded-2xl shadow border-l-4 border-brandOrange">
+                                    <span class="text-xs text-gray-500 font-bold uppercase">Received Messages/Quotes</span>
+                                    <h3 id="stat-messages-count" class="text-3xl font-extrabold text-navy-800 my-1">1</h3>
+                                    <span class="text-xs text-brandOrange">Requires Attention</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-2xl shadow">
+                                <h3 class="font-bold text-navy-800 text-lg mb-4">Quick Controller Status</h3>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex justify-between p-3 bg-gray-50 rounded-lg">
+                                        <span>Target Domain:</span>
+                                        <span class="font-mono font-bold text-brandBlue-500">www.alphagsl.com</span>
+                                    </div>
+                                    <div class="flex justify-between p-3 bg-gray-50 rounded-lg">
+                                        <span>CMS Synchronization:</span>
+                                        <span class="text-green-600 font-bold"><i class="fa-solid fa-check-circle"></i> Active & Live</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 2: LIVE CMS EDITOR -->
+                        <div id="admin-panel-cms" class="admin-panel hidden bg-white p-6 rounded-2xl shadow space-y-6">
+                            <h3 class="text-xl font-bold text-navy-800 border-b pb-3">Edit Live Website Text & Content</h3>
+                            
+                            <form onsubmit="saveCmsChanges(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Hero Section Main Title</label>
+                                    <input type="text" id="edit-hero-title" class="w-full p-2.5 border rounded-lg text-sm">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Hero Subtitle Text</label>
+                                    <textarea id="edit-hero-subtitle" rows="3" class="w-full p-2.5 border rounded-lg text-sm"></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">About Us Company Story</label>
+                                    <textarea id="edit-about-body" rows="4" class="w-full p-2.5 border rounded-lg text-sm"></textarea>
+                                </div>
+
+                                <button type="submit" class="bg-brandBlue-500 hover:bg-brandBlue-600 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition">
+                                    Publish CMS Changes Live
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- TAB 3: SHIPMENT TRACKER MANAGER -->
+                        <div id="admin-panel-trackers" class="admin-panel hidden bg-white p-6 rounded-2xl shadow space-y-6">
+                            <div class="flex justify-between items-center border-b pb-3">
+                                <h3 class="text-xl font-bold text-navy-800">Shipment Status Controller</h3>
+                                <button onclick="toggleNewShipmentModal()" class="bg-green-600 text-white text-xs px-3 py-2 rounded-lg font-semibold"><i class="fa-solid fa-plus mr-1"></i> Add New Tracking</button>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-gray-100 text-gray-600 uppercase">
+                                        <tr>
+                                            <th class="p-3">Tracking ID</th>
+                                            <th class="p-3">Origin / Destination</th>
+                                            <th class="p-3">Status</th>
+                                            <th class="p-3">ETA</th>
+                                            <th class="p-3">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-shipment-table" class="divide-y">
+                                        <!-- Dynamic JS Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- TAB 4: MESSAGES & QUOTES -->
+                        <div id="admin-panel-messages" class="admin-panel hidden bg-white p-6 rounded-2xl shadow space-y-6">
+                            <h3 class="text-xl font-bold text-navy-800 border-b pb-3">Received Contact Queries & Freight Rate Requests</h3>
+                            
+                            <div id="admin-messages-list" class="space-y-4">
+                                <!-- Dynamic JS Entries -->
+                            </div>
+                        </div>
+
+                        <!-- TAB 5: DOMAIN & SITE SETTINGS -->
+                        <div id="admin-panel-settings" class="admin-panel hidden bg-white p-6 rounded-2xl shadow space-y-6">
+                            <h3 class="text-xl font-bold text-navy-800 border-b pb-3">Website & Domain Branding Settings</h3>
+                            
+                            <form onsubmit="saveDomainSettings(event)" class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1">Company Name</label>
+                                        <input type="text" id="setting-company" class="w-full p-2.5 border rounded-lg text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1">Target Domain</label>
+                                        <input type="text" id="setting-domain" class="w-full p-2.5 border rounded-lg text-sm">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1">Support Email</label>
+                                        <input type="email" id="setting-email" class="w-full p-2.5 border rounded-lg text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1">Contact Phone</label>
+                                        <input type="text" id="setting-phone" class="w-full p-2.5 border rounded-lg text-sm">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="bg-navy-800 hover:bg-navy-900 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition">
+                                    Save Branding & Domain Info
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-800 text-gray-300 pt-16 pb-8 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i class="fa-solid fa-ship text-2xl text-brandBlue-500"></i>
+                    <span id="footer-company-name" class="text-xl font-extrabold text-white">ALPHA GSL</span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                    Alpha Global Shipping & Logistics provides global sea freight, air express shipping, customs brokerage, and supply chain solutions worldwide.
+                </p>
+                <div class="flex space-x-3 text-sm">
+                    <a href="#" class="bg-gray-700 hover:bg-brandBlue-500 p-2 rounded transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="bg-gray-700 hover:bg-brandBlue-500 p-2 rounded transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="bg-gray-700 hover:bg-brandBlue-500 p-2 rounded transition"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="switchView('home')" class="hover:text-white transition">Home Page</button></li>
+                    <li><button onclick="switchView('about')" class="hover:text-white transition">About Our Company</button></li>
+                    <li><button onclick="switchView('services')" class="hover:text-white transition">Ocean & Air Services</button></li>
+                    <li><button onclick="switchView('tracking')" class="hover:text-white transition">Cargo Tracking</button></li>
+                    <li><button onclick="switchView('contact')" class="hover:text-white transition">Contact Support</button></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Core Services</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li>Ocean Freight Forwarding (FCL/LCL)</li>
+                    <li>Express Air Cargo Transport</li>
+                    <li>Customs Brokerage & Clearance</li>
+                    <li>Bonded Warehousing & Storage</li>
+                    <li>Heavy Lift Project Logistics</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Domain Information</h4>
+                <p class="text-xs text-gray-400 mb-2">Registered Site Domain:</p>
+                <span id="footer-domain-text" class="text-sm font-mono font-bold text-brandBlue-500 bg-navy-900 px-3 py-1 rounded inline-block">www.alphagsl.com</span>
+                <p class="text-xs text-gray-400 mt-4">24/7 Global Dispatch Center</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-gray-700 text-center text-xs text-gray-500">
+            &copy; 2026 Alpha Global Shipping & Logistics (www.alphagsl.com). All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC & CMS CONTROLLER CODE -->
+    <script>
+        // GLOBAL STATE STORE
+        const siteData = {
+            domain: "www.alphagsl.com",
+            companyName: "Alpha Global Shipping & Logistics",
+            phone: "+1 (800) 555-ALPHA",
+            email: "info@alphagsl.com",
+            address: "Suite 1400, Global Maritime Trade Center, Harbor Drive, Port Plaza",
+            heroTitle: "Smart Logistics & World-Class Ocean & Air Freight",
+            heroSubtitle: "Alpha Global Shipping & Logistics (www.alphagsl.com) provides seamless worldwide supply chain solutions, customs clearance, and real-time cargo tracking.",
+            aboutBody: "Alpha Global Shipping & Logistics (www.alphagsl.com) has grown from a regional logistics operator into an international ocean and air freight forwarder operating across key international trade lanes.",
+            
+            // TRACKING DATABASE
+            shipments: [
+                {
+                    code: "AGSL-982341",
+                    origin: "Shanghai, CN",
+                    destination: "Rotterdam, NL",
+                    status: "In Transit",
+                    eta: "2026-11-04",
+                    mode: "Ocean Freight (FCL)",
+                    updates: [
+                        { time: "2026-10-18 09:30", text: "Vessel Departed Shanghai Port Terminal" },
+                        { time: "2026-10-15 14:00", text: "Customs Clearance Approved at Export Origin" },
+                        { time: "2026-10-12 10:15", text: "Container Loaded at Warehouse" }
+                    ]
+                },
+                {
+                    code: "AGSL-104922",
+                    origin: "Dubai, UAE",
+                    destination: "New York, USA",
+                    status: "Customs Clearance",
+                    eta: "2026-10-25",
+                    mode: "Air Cargo Express",
+                    updates: [
+                        { time: "2026-10-19 08:00", text: "Arrived at Import Customs Inspection" },
+                        { time: "2026-10-18 22:00", text: "In Transit on Flight AG-802" }
+                    ]
+                }
+            ],
+
+            // MESSAGES AND QUOTES DATABASE
+            messages: [
+                {
+                    type: "Contact Inquiry",
+                    name: "Michael Vance",
+                    email: "mvance@logistics-global.com",
+                    subject: "Container Freight Quote Request",
+                    body: "Need 4x40ft HQ containers shipped from Ningbo to Hamburg next month.",
+                    date: "2026-10-19 18:22"
+                }
+            ]
+        };
+
+        // PAGE VIEW SWITCHER
+        function switchView(viewName) {
+            // Hide all views
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            
+            // Show requested view
+            const targetView = document.getElementById('view-' + viewName);
+            if (targetView) targetView.classList.remove('hidden');
+
+            // Reset navbar highlight
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-nav'));
+            const navBtn = document.getElementById('nav-' + viewName);
+            if (navBtn) navBtn.classList.add('active-nav');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // If entering admin, render fields
+            if (viewName === 'admin') {
+                populateAdminFields();
+                renderAdminShipmentTable();
+                renderAdminMessages();
+            }
+        }
+
+        // MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // QUICK TRACKER
+        function quickTrackSubmit() {
+            const val = document.getElementById('quick-track-input').value.trim();
+            if (!val) return alert('Please enter a tracking number.');
+            
+            switchView('tracking');
+            document.getElementById('full-track-input').value = val;
+            fullTrackSubmit();
+        }
+
+        // FULL TRACKER LOGIC
+        function fullTrackSubmit() {
+            const val = document.getElementById('full-track-input').value.trim().toUpperCase();
+            const resultCard = document.getElementById('track-result-card');
+            
+            const match = siteData.shipments.find(s => s.code === val);
+
+            if (match) {
+                document.getElementById('res-code').innerText = match.code;
+                document.getElementById('res-status-badge').innerText = match.status;
+                document.getElementById('res-origin').innerText = match.origin;
+                document.getElementById('res-dest').innerText = match.destination;
+                document.getElementById('res-eta').innerText = match.eta;
+                document.getElementById('res-mode').innerText = match.mode;
+
+                const timelineHtml = match.updates.map(u => `
+                    <div>
+                        <span class="font-bold text-navy-800">${u.time}</span> - <span class="text-gray-600">${u.text}</span>
+                    </div>
+                `).join('');
+
+                document.getElementById('res-timeline').innerHTML = timelineHtml;
+                resultCard.classList.remove('hidden');
+            } else {
+                alert('Shipment record not found for code: ' + val + '\nTry demo code: AGSL-982341');
+                resultCard.classList.add('hidden');
+            }
+        }
+
+        // FREIGHT ESTIMATOR CALCULATOR
+        function calculateQuote(e) {
+            e.preventDefault();
+            const origin = document.getElementById('quote-origin').value;
+            const dest = document.getElementById('quote-dest').value;
+            const mode = document.getElementById('quote-mode').value;
+            const weight = parseFloat(document.getElementById('quote-weight').value);
+            const email = document.getElementById('quote-email').value;
+
+            let rate = mode === 'air' ? 4.5 : mode === 'ocean' ? 1.8 : 2.2;
+            let price = (weight * rate) + 250;
+
+            document.getElementById('quote-price').innerText = '$' + price.toFixed(2) + ' USD';
+            document.getElementById('quote-result-box').classList.remove('hidden');
+
+            // Log quote into Admin Messages
+            siteData.messages.push({
+                type: "Freight Quote",
+                name: "Quote User (" + email + ")",
+                email: email,
+                subject: `Quote: ${origin} to ${dest} (${mode.toUpperCase()})`,
+                body: `Estimated Weight: ${weight} KG | Generated Quote: $${price.toFixed(2)} USD`,
+                date: new Date().toLocaleString()
+            });
+
+            document.getElementById('stat-messages-count').innerText = siteData.messages.length;
+        }
+
+        // CONTACT FORM SUBMISSION
+        function submitContactForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email-input').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+
+            siteData.messages.push({
+                type: "Contact Inquiry",
+                name: name,
+                email: email,
+                subject: subject,
+                body: message,
+                date: new Date().toLocaleString()
+            });
+
+            document.getElementById('contact-success-msg').classList.remove('hidden');
+            document.getElementById('site-contact-form').reset();
+            document.getElementById('stat-messages-count').innerText = siteData.messages.length;
+        }
+
+        // SCROLL TO QUOTE CALCULATOR
+        function scrollToQuote() {
+            const el = document.getElementById('quote-calculator');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ================= ADMIN PORTAL FUNCTIONS =================
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-panel').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-sidebar-item').forEach(el => el.classList.remove('active', 'bg-brandBlue-500', 'text-white'));
+
+            document.getElementById('admin-panel-' + tabName).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabName);
+            activeBtn.classList.add('active');
+        }
+
+        function populateAdminFields() {
+            document.getElementById('edit-hero-title').value = siteData.heroTitle;
+            document.getElementById('edit-hero-subtitle').value = siteData.heroSubtitle;
+            document.getElementById('edit-about-body').value = siteData.aboutBody;
+
+            document.getElementById('setting-company').value = siteData.companyName;
+            document.getElementById('setting-domain').value = siteData.domain;
+            document.getElementById('setting-email').value = siteData.email;
+            document.getElementById('setting-phone').value = siteData.phone;
+        }
+
+        function saveCmsChanges(e) {
+            e.preventDefault();
+            siteData.heroTitle = document.getElementById('edit-hero-title').value;
+            siteData.heroSubtitle = document.getElementById('edit-hero-subtitle').value;
+            siteData.aboutBody = document.getElementById('edit-about-body').value;
+
+            // Update main site elements live
+            document.getElementById('hero-title').innerText = siteData.heroTitle;
+            document.getElementById('hero-subtitle').innerText = siteData.heroSubtitle;
+            document.getElementById('about-body-text').innerHTML = `<p>${siteData.aboutBody}</p>`;
+
+            alert('Website live content updated successfully!');
+        }
+
+        function saveDomainSettings(e) {
+            e.preventDefault();
+            siteData.companyName = document.getElementById('setting-company').value;
+            siteData.domain = document.getElementById('setting-domain').value;
+            siteData.email = document.getElementById('setting-email').value;
+            siteData.phone = document.getElementById('setting-phone').value;
+
+            // Reflect on Header & Footer live
+            document.getElementById('top-phone').innerText = siteData.phone;
+            document.getElementById('top-email').innerText = siteData.email;
+            document.getElementById('top-domain').innerText = siteData.domain;
+            document.getElementById('footer-domain-text').innerText = siteData.domain;
+            document.getElementById('contact-phone-text').innerText = siteData.phone;
+            document.getElementById('contact-email-text').innerText = siteData.email;
+
+            alert('Branding and Domain settings saved!');
+        }
+
+        function renderAdminShipmentTable() {
+            const tbody = document.getElementById('admin-shipment-table');
+            tbody.innerHTML = siteData.shipments.map((s, index) => `
+                <tr>
+                    <td class="p-3 font-mono font-bold text-brandBlue-500">${s.code}</td>
+                    <td class="p-3">${s.origin} &rarr; ${s.destination}</td>
+                    <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-bold">${s.status}</span></td>
+                    <td class="p-3">${s.eta}</td>
+                    <td class="p-3">
+                        <button onclick="updateShipmentStatus(${index})" class="text-brandBlue-500 hover:underline font-bold">Update Status</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.getElementById('stat-active-shipments').innerText = siteData.shipments.length;
+        }
+
+        function updateShipmentStatus(index) {
+            const newStatus = prompt("Enter new status (e.g. In Transit, Delivered, Customs Clearance):", siteData.shipments[index].status);
+            if (newStatus) {
+                siteData.shipments[index].status = newStatus;
+                siteData.shipments[index].updates.unshift({
+                    time: new Date().toLocaleString(),
+                    text: "Status updated to " + newStatus
+                });
+                renderAdminShipmentTable();
+                alert('Status updated for ' + siteData.shipments[index].code);
+            }
+        }
+
+        function toggleNewShipmentModal() {
+            const code = prompt("Enter New Tracking Code (e.g. AGSL-554433):");
+            if (!code) return;
+            const origin = prompt("Enter Origin Port/City:", "Hong Kong, HK");
+            const dest = prompt("Enter Destination Port/City:", "Los Angeles, USA");
+
+            siteData.shipments.push({
+                code: code.toUpperCase(),
+                origin: origin,
+                destination: dest,
+                status: "Dispatched",
+                eta: "2026-11-15",
+                mode: "Ocean Freight",
+                updates: [{ time: new Date().toLocaleString(), text: "Shipment Registered into System" }]
+            });
+
+            renderAdminShipmentTable();
+        }
+
+        function renderAdminMessages() {
+            const container = document.getElementById('admin-messages-list');
+            if (siteData.messages.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-500">No messages received yet.</p>`;
+                return;
+            }
+
+            container.innerHTML = siteData.messages.map(m => `
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded ${m.type === 'Freight Quote' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}">${m.type}</span>
+                        <span class="text-[10px] text-gray-400">${m.date}</span>
+                    </div>
+                    <h4 class="font-bold text-navy-800 text-sm">${m.subject}</h4>
+                    <p class="text-xs text-gray-600 mt-1">${m.body}</p>
+                    <div class="mt-2 text-[11px] text-gray-500 font-semibold">From: ${m.name} (${m.email})</div>
+                </div>
+            `).join('');
+
+            document.getElementById('stat-messages-count').innerText = siteData.messages.length;
+        }
+
+        // INITIAL LOAD
+        window.onload = function() {
+            switchView('home');
+        };
+    </script>
+</body>
+</html>
