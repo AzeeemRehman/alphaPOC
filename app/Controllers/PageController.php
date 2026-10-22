@@ -37,6 +37,9 @@ final class PageController
 
     public function service(string $slug): string
     {
+        if ($slug === 'land-transport') {
+            redirect('services/transportation', 301); // old URL, renamed
+        }
         $service = Services::find($slug);
         if (!$service) {
             abort(404);

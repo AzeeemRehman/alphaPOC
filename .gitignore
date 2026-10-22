@@ -1,5 +1,6 @@
 /node_modules
 /.env
+/.claude
 /storage/logs/*
 !/storage/logs/.gitkeep
 /storage/cache/*

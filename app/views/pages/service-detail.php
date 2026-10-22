@@ -7,7 +7,33 @@
         <div class="lg:col-span-2">
             <p class="text-lg leading-relaxed text-slate-600"><?= e($service['intro']) ?></p>
 
-            <h2 class="mt-10 text-2xl font-extrabold">What's included</h2>
+            <?php foreach ($service['sections'] ?? [] as [$h, $p]): ?>
+                <h2 class="mt-10 text-2xl font-extrabold"><?= e($h) ?></h2>
+                <p class="mt-3 leading-relaxed text-slate-600"><?= e($p) ?></p>
+            <?php endforeach; ?>
+
+            <?php if (!empty($service['highlights'])): ?>
+                <h2 class="mt-12 text-2xl font-extrabold">Special services</h2>
+                <div class="mt-4 grid gap-4 sm:grid-cols-3">
+                    <?php foreach ($service['highlights'] as [$t, $d]): ?>
+                        <div class="card border-t-4 border-t-brand-blue p-5">
+                            <h3 class="font-bold"><?= e($t) ?></h3>
+                            <p class="mt-2 text-sm text-slate-600"><?= e($d) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($service['capabilities'])): ?>
+                <h2 class="mt-12 text-2xl font-extrabold">Our capabilities</h2>
+                <ul class="mt-4 grid gap-3 sm:grid-cols-3">
+                    <?php foreach ($service['capabilities'] as $c): ?>
+                        <li class="flex gap-3 rounded-lg bg-slate-50 p-3 text-sm"><i class="fa-solid fa-star mt-0.5 text-brand-blue"></i><span><?= e($c) ?></span></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <h2 class="mt-12 text-2xl font-extrabold"><?= !empty($service['highlights']) ? 'Our solutions' : "What's included" ?></h2>
             <ul class="mt-4 grid gap-3 sm:grid-cols-2">
                 <?php foreach ($service['features'] as $f): ?>
                     <li class="flex gap-3 rounded-lg bg-slate-50 p-3 text-sm"><i class="fa-solid fa-circle-check mt-0.5 text-brand-orange"></i><span><?= e($f) ?></span></li>

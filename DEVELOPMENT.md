@@ -98,7 +98,7 @@ Font: **Inter** (already used in the prototype). Headings bold or extra-bold.
 /services/air-freight       Air Cargo Express & Charter
 /services/customs-clearance Customs Brokerage & Clearance
 /services/warehousing       Bonded Warehousing & Distribution
-/services/land-transport    Land Transport / Haulage
+/services/transportation    Transportation (Road & Rail)
 /services/project-cargo     Heavy Lift & Project Logistics
 /tracking               Shipment Tracking
 /quote                  Request a Quote (detailed freight form)
